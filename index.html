@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" href="/imgs/favicon.ico">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://financial-calculators.com/xmlrpc.php">
+	<title>Financiera</title>
+  <meta name="description"  content="Calcular simples o compuestos de interés y valor en el futuro entre dos fechas. Libre calculadora web. También hace la aritmética de fechas." />
+
+
+  <link rel='stylesheet' id='init_styles-css'  href='https://financial-calculators.com/wp-content/themes/fincalcs/css/bootstrap-reboot.min.css?ver=4.1C' type='text/css' media='all' />
+  <link rel='stylesheet' id='styles-css'  href='https://financial-calculators.com/wp-content/themes/fincalcs/css/style.min.css?ver=4.1C' type='text/css' media='screen' />
+  <link rel='stylesheet' id='printer-css'  href='https://financial-calculators.com/wp-content/themes/fincalcs/css/printer.min.css?ver=4.1C' type='text/css' media='print' />
+  <script type='text/javascript' src='https://financial-calculators.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+  <script type='text/javascript' src='https://financial-calculators.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+  <link rel='https://api.w.org/' href='https://financial-calculators.com/wp-json/' />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://financial-calculators.com/xmlrpc.php?rsd" />
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://financial-calculators.com/wp-includes/wlwmanifest.xml" /> 
+  <meta name="generator" content="WordPress 5.2.2" />
+  <meta name="generator" content="WooCommerce 3.7.0" />
+  <link rel='shortlink' href='https://financial-calculators.com/?p=613' />
+  <link rel="alternate" type="application/json+oembed" href="https://financial-calculators.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ffinancial-calculators.com%2Fes%2Finteres-calculadora" />
+  <link rel="alternate" type="text/xml+oembed" href="https://financial-calculators.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ffinancial-calculators.com%2Fes%2Finteres-calculadora&#038;format=xml" />
+
+  <link rel="alternate" href="https://financial-calculators.com/compound-interest-calculator" hreflang="en" />
+  <link rel="alternate" href="https://financial-calculators.com/es/interes-calculadora" hreflang="es" />
+  </head>
+  <body id="compoundinterest-es-page" class="page-template-default page page-id-613 page-child parent-pageid-597 theme-fincalcs woocommerce-no-js">
+    <main>
+      <article>
+        <div class="container">
+          <header class="page-header">
+            <h1>Calculadora de financiera</h1>
+          </header>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-8 calc-col">
+              <div class="text-wrapper tail-lg">
+              </div>
+              <div class="calc-wrap">
+                <form id="compoundinterest" class="financial-calculators calculator">
+                  <div class="control-group">
+                    <label for="edPV" class="label pct55">A partir Importe:
+                      <abbr title="present value">(PV)</abbr>?:</label>
+                      <div class="wrapper pct45">
+                        <input type="text" class="calc-control num" id="edPV" maxlength="14" size="16">
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="edRate" class="label pct55">Tasa de inter&eacute;s anual:</label>
+                      <div class="wrapper pct45">
+                        <input type="text" class="calc-control num" id="edRate" maxlength="8" size="16">
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="edNumDays" class="label pct55" data-toggle="tooltip" data-placement="right" title="-9,999 &lt; # &lt; 47,482">N&uacute;mero de d&iacute;as
+                        <small>(-9,999 &lt; # &lt; 47,482)</small> (#)?:</label>
+
+                        <div class="wrapper pct45">
+                          <input type="text" class="calc-control num" id="edNumDays" maxlength="6" size="16">
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label for="edDate1" class="label pct55">Fecha de inicio
+                          <small>(Año &gt; 1969)</small>?:</label>
+                          <div class="wrapper pct45" id="calDate1">
+                            <input type="text" class="calc-control date" id="edDate1" name="edDate1" maxlength="10" size="16">
+                            <button type="button" id="btnDate1" class="btn btn-primary date">
+                              <i class="icon-calendar" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label for="edDate2" class="label pct55">Fecha de t&eacute;rmino
+                            <small>(Año &lt; 2100)</small>?:</label>
+                            <div class="wrapper pct45" id="calDate2">
+                              <input type="text" class="calc-control date" id="edDate2" name="edDate2" maxlength="10" size="16">
+                              <button type="button" id="btnDate2" class="btn btn-primary date">
+                                <i class="icon-calendar" aria-hidden="true"></i>
+                              </button>
+                            </div>
+                          </div>                            
+                          <div class="control-group">
+                            <label for="selCmpFreq" class="label pct55">Para agravar frecuencia:</label>
+
+                            <div class="wrapper pct45">
+                              <select id="selCmpFreq" class="calc-control">
+                                <option value="0">Continuo</option>
+                                <option value="1">Diario</option>
+                                <option value="2">Semanal</option>
+                                <option value="3">Quincenal</option>
+                                <option value="4">Dos veces al mes</option>
+                                <option value="5">Cada 4 semanas</option>
+                                <option value="6" selected="selected">Mensual</option>
+                                <option value="7">Bimestral</option>
+                                <option value="8">Trimestral</option>
+                                <option value="9">Cada 4 meses</option>
+                                <option value="10">Semestral</option>
+                                <option value="11">Anualmente</option>
+                                <option value="12">Exacto/Simple</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label for="selDIY" class="label pct55">D&iacute;as en un a&ntilde;o:</label>
+
+                            <div class="wrapper pct45">
+                              <select id="selDIY" class="calc-control">
+                                <option value="0">360</option>
+                                <option value="1">364</option>
+                                <option value="2" selected="selected">365</option>
+                              </select>
+                            </div>
+                          </div>
+                          <hr class="bar" />
+
+                          <div class="control-group">
+                            <label class="label pct55">Inter&eacute;s ganado:</label>
+
+                            <div class="wrapper pct45">
+                              <input type="text" class="calc-control num" id="edInterest" maxlength="14" size="16" disabled>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="label pct55">Valor Futuro (VF):</label>
+
+                            <div class="wrapper pct45">
+                              <input type="text" class="calc-control num" id="edFV" maxlength="14" size="16" disabled>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="label pct55" title="Porcentaje de rendimiento anual">Porcentaje de rendimiento anual:</label>
+
+                            <div class="wrapper pct45">
+                              <input type="text" class="calc-control num" id="edAPY" maxlength="14" size="16" disabled>
+                            </div>
+                          </div>
+                          <div class="control-group tail-md">
+                            <label class="label pct55">Tarifa Diaria de Inter&eacute;s:</label>
+
+                            <div class="wrapper pct45">
+                              <input type="text" class="calc-control num" id="edDailyRate" maxlength="14" size="16" disabled>
+                            </div>
+                          </div>
+                          <div class="btn-group">
+                            <div class="btn-row">                          
+                              <div class="btn-wrapper-4">
+                                <button type="button" id="btnCalc" class="btn btn-primary btn-calculator">Calcular</button>
+                              </div>
+                              <div class="btn-wrapper-4">
+                                <button type="button" id="btnClear" class="btn btn-primary btn-calculator">Aclarar</button>
+                              </div>
+                              <!--<div class="btn-wrapper-4">
+                                <button type="button" id="btnPrint" class="btn btn-primary btn-calculator">Imprimir</button>
+                              </div>-->
+                            </div>
+                          </div>
+                        </form>
+                        <div id="alert" class="card mb-4 box-shadow">
+                          <div id="alert-header" class="card-header alert-header">
+                            <span id="btnAlertClose">&times;</span>
+                            <h4>Info...</h4>
+                          </div>
+                          <div class="card-body">
+                            <div id="msg"></div>
+                          </div>
+                        </div>                         
+                        <script type='text/javascript' src='https://financial-calculators.com/wp-includes/js/wp-embed.min.js?ver=5.2.2'></script>
+                        <script type='text/javascript' src='https://financial-calculators.com/wp-content/themes/fincalcs/js/fc.CORE.min.js?ver=4.1C'></script>
+                        <script type='text/javascript' src='https://financial-calculators.com/wp-content/themes/fincalcs/js/fc.common.MIN.min.js?ver=4.1C'></script>
+                        <script type='text/javascript' src='https://financial-calculators.com/wp-content/themes/fincalcs/js/fc.calculator.INTEREST.es.min.js?ver=4.1C'></script>
+                        <script data-no-minify="1" async src="https://financial-calculators.com/wp-content/plugins/rocket-lazy-load/assets/js/11.0.6/lazyload.min.js"></script>
+                      </body>
+                      </html>
